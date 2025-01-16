@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # Chirps routes
   get "chirps" => "chirps#index"
-  post "/chirps" => "chirps#create"
+  post "chirps" => "chirps#create"
 
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)

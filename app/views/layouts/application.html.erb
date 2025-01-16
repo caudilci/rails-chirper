@@ -29,6 +29,7 @@
       <%= link_to "Home", home_path %>
       <%= link_to "Chirps", chirps_path %>
       <% if authenticated? %>
+        <%= Current.user.email_address %>
         <%= button_to "Sign Out", session_path, method: :delete  %>
       <% else %>
         <%= link_to "Sign In", new_session_path %>

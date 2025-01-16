@@ -5,10 +5,11 @@ class ChirpsController < ApplicationController
 
   def create
     @chirp = Chirp.new(chirp_params)
+    @chirp.user_id = Current.user.id
     if @chirp.save
       redirect_to chirps_index_url
     else
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
 
   end
