@@ -6,5 +6,21 @@
     <%= form.text_field :message %>
     <%= form.submit "Chirp" %>
   <% end %>
-  <%= debug @chirps %>
+  <div>
+    <% @chirps.each do |chirp| %>
+        <div>
+            <%= chirp.message %>
+            <%= User.find(chirp.user_id).email_address %>
+            <% if chirp.created_at != chirp.updated_at %>
+                <p>Edited <%= chirp.updated_at %></p>
+            <% else %>
+                <%= chirp.created_at %>
+            <% end %>
+            <% if chirp.user_id == Current.user.id %>
+                <%= link_to "Edit", "/chirps/edit/:chirp.id" %>
+                <%= button_to "Delete", "chirps/delete/:chirp.id", method: :delete  %>
+            <% end %>
+        </div>
+    <% end %>
+  </div>
 </div>
