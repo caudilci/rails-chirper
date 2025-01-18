@@ -17,8 +17,8 @@
                 <%= chirp.created_at %>
             <% end %>
             <% if chirp.user_id == Current.user.id %>
-                <%= link_to "Edit", "/chirps/edit/:chirp.id" %>
-                <%= button_to "Delete", "chirps/delete/:chirp.id", method: :delete  %>
+                <%= link_to "Edit", controller: "chirps", action: "edit", id: chirp%>
+                <%= button_to "Delete", "chirps/#{chirp.id}/delete", method: :delete  %>
             <% end %>
         </div>
     <% end %>

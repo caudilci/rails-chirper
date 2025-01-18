@@ -7,7 +7,7 @@ class ChirpsController < ApplicationController
     @chirp = Chirp.new(chirp_params)
     @chirp.user_id = Current.user.id
     if @chirp.save
-      redirect_to chirps_index_url
+      redirect_to :index
     else
       render :index, status: :unprocessable_entity
     end
@@ -18,9 +18,19 @@ class ChirpsController < ApplicationController
   end
 
   def edit
+    @chirp = Chirp.find(params[:id])
+    if @chirp.user_id != Current.user.id
+      redirect_to :index
+    end
   end
 
   def update
+    @chirp = Chirp.find(params[:id])
+    if @chirp.update(chirp_params)
+      redirect_to :index
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   def delete
