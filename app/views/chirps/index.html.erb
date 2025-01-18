@@ -17,8 +17,10 @@
                 <%= chirp.created_at %>
             <% end %>
             <% if chirp.user_id == Current.user.id %>
-                <%= link_to "Edit", controller: "chirps", action: "edit", id: chirp%>
-                <%= button_to "Delete", "chirps/#{chirp.id}/delete", method: :delete  %>
+                <%= link_to "Edit", controller: "chirps", action: "edit", id: chirp %>
+                <%= form_for :chirp, url: "/chirps/#{chirp.id}", method: :delete do |form| %>
+                    <%= form.submit "Delete" %>
+                <% end %>
             <% end %>
         </div>
     <% end %>
